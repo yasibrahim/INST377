@@ -5,12 +5,18 @@
 	div {
 		margin-bottom: 20px;
 	}
+	table, td {
+   border: 5px solid purple;
+	 border-collapse: collapse;
+	 font-size: 20px;
+	 padding: 5px;
+	}
 </style>
 
 <!-- Data -->
 <script>
 
-// Don't copy this to any other places in this file. You can just use the "organizations" variable to do your assignment. 
+// Don't copy this to any other places in this file. You can just use the "organizations" variable to do your assignment.
 var organizations = [
 	 {
         "Region": "East Asia & Pacific",
@@ -19,7 +25,7 @@ var organizations = [
         "Organization Name": "200 Square",
         "Organization Type": "For-profit",
         "Sectors": "Housing, construction & real estate",
-        "Description": "200 Square is an online real estate agent in New Zealand.",        
+        "Description": "200 Square is an online real estate agent in New Zealand.",
         "City": "Wellington",
         "State/Region": "Wellington",
         "Founding Year": 2010,
@@ -34,7 +40,7 @@ var organizations = [
         "Organization Name": "21c Consultancy",
         "Organization Type": "For-profit",
         "Sectors": "IT and geospatial",
-        "Description": "21c is ICT innovation consultancy which advises international actors, institutions and governments around the world on technological trends which can affect the way they deliver services.",        
+        "Description": "21c is ICT innovation consultancy which advises international actors, institutions and governments around the world on technological trends which can affect the way they deliver services.",
         "City": "London",
         "State/Region": "",
         "Founding Year": 2015,
@@ -49,7 +55,7 @@ var organizations = [
         "Organization Name": "2GIS",
         "Organization Type": "For-profit",
         "Sectors": "IT and geospatial",
-        "Description": "2GIS is a city information service combined with a map. ",        
+        "Description": "2GIS is a city information service combined with a map. ",
         "City": "Novosibirsk",
         "State/Region": "Novosibirsk Oblast",
         "Founding Year": 1999,
@@ -64,7 +70,7 @@ var organizations = [
         "Organization Name": "2nd City Zoning",
         "Organization Type": "Nonprofit",
         "Sectors": "Housing, construction & real estate",
-        "Description": "An Open City App, 2nd City Zoning is an interactive map that lets you find out how your building is zoned, learn where to locate your business and explore zoning patterns throughout the city.",        
+        "Description": "An Open City App, 2nd City Zoning is an interactive map that lets you find out how your building is zoned, learn where to locate your business and explore zoning patterns throughout the city.",
         "City": "Chicago",
         "State/Region": "Illinois",
         "Founding Year": 2013,
@@ -94,7 +100,7 @@ var organizations = [
         "Organization Name": "360 Yield Center",
         "Organization Type": "For-profit",
         "Sectors": "Agriculture",
-        "Description": "Taking a 360-degree view of key yield-limiting variables, 360 Yield Center develops strategies for better-performing crops and better on-farm profits.",        
+        "Description": "Taking a 360-degree view of key yield-limiting variables, 360 Yield Center develops strategies for better-performing crops and better on-farm profits.",
         "City": "Morton",
         "State/Region": "Illinois",
         "Founding Year": 2014,
@@ -124,7 +130,7 @@ var organizations = [
         "Organization Name": "3Tier (Europe) ",
         "Organization Type": "For-profit",
         "Sectors": "Energy and climate",
-        "Description": "3TIER is a global environmental and industrial measurement company providing weather-driven renewable energy risk assessment and forecasting for wind, solar, and hydro power projects.",        
+        "Description": "3TIER is a global environmental and industrial measurement company providing weather-driven renewable energy risk assessment and forecasting for wind, solar, and hydro power projects.",
         "City": "Helsinki",
         "State/Region": "Uusimaa",
         "Founding Year": 2012,
@@ -139,7 +145,7 @@ var organizations = [
         "Organization Name": "5PSolutions",
         "Organization Type": "For-profit",
         "Sectors": "IT and geospatial",
-        "Description": "5PSolutions are artisans of mobile platforms.",       
+        "Description": "5PSolutions are artisans of mobile platforms.",
         "City": "Fairfax",
         "State/Region": "Virginia",
         "Founding Year": 2007,
@@ -154,7 +160,7 @@ var organizations = [
         "Organization Name": "AAA National",
         "Organization Type": "Other",
         "Sectors": "Transportation and logistics",
-        "Description": "AAA provides services such as travel, automotive, insurance, financial, and discounts.",        
+        "Description": "AAA provides services such as travel, automotive, insurance, financial, and discounts.",
         "City": "Irving",
         "State/Region": "Texas",
         "Founding Year": 1902,
@@ -184,7 +190,7 @@ var organizations = [
         "Organization Name": "ABRELATAM",
         "Organization Type": "Nonprofit",
         "Sectors": "Governance",
-        "Description": "ABRELATAM is an conference that seeks to accelerate the process of opening information through Open Data transparency and promote the Latin America.",        
+        "Description": "ABRELATAM is an conference that seeks to accelerate the process of opening information through Open Data transparency and promote the Latin America.",
         "City": "Santiago",
         "State/Region": "",
         "Founding Year": 2015,
@@ -192,7 +198,7 @@ var organizations = [
         "Type of Data Used": "",
         "profileID": "1687"
     }
-	
+
 ];
 </script>
 
@@ -200,16 +206,85 @@ var organizations = [
 
 <body>
 <!-- Feel free to add empty tags. Data shouldn't be here. -->
-	<div id="org_table"></div>
+	<div id="orgs_table">
+			<table>
+				<tr>
+					<td>How many non-profit organizations are listed?</td>
+					<td id="one"></td>
+				</tr>
+				<tr>
+					<td>How many organizations are less than 10 years old?</td>
+					<td id="two"></td>
+				</tr>
+				<tr>
+					<td>How many of these organizations are North American?</td>
+					<td id="three"></td>
+				</tr>
+				<tr>
+					<td>How many organizations used the Transportation type of data?</td>
+					<td id="four"></td>
+				</tr>
+				<tr>
+					<td>How many organizations founded in the 2000s that are considered to
+						be small (1-10 employees) are also For-profit type organizations?</td>
+					<td id="five"></td> 
+				</tr>
+			</table>
+	</div>
 
 <script>
-// outputs the first item of the organizations array. Just for testing.
-// console.log(organizations[0]); 
-console.log("test");
+	// Your JavaScript code goes here
+	// outputs the first item of the organizations array. Just for testing.
+	// console.log(organizations[0]);
 
-// Your JavaScript code goes here
+	//How many non-profit organizations are listed?
+	var nonprofits = 0;
+		for(var i = 0; i < organizations.length; i++){
+    	if(organizations[i]["Organization Type"] === "Nonprofit"){
+				nonprofits++;
+			}
+		}
+		document.getElementById("one").innerHTML = nonprofits;
 
 
+	//How many organizations are less than 10 years old?
+	var lessThan10 = 0;
+		for(var i = 0; i < organizations.length; i++){
+    	if(organizations[i]["Founding Year"] >= "2009"){
+				lessThan10++;
+			}
+		}
+		document.getElementById("two").innerHTML = lessThan10;
+
+	//How many of these organizations are North American?
+	var northAmerican = 0;
+		for(var i = 0; i < organizations.length; i++){
+    	if(organizations[i]["Region"] == "North America"){
+				northAmerican++;
+			}
+		}
+		document.getElementById("three").innerHTML = northAmerican;
+
+	//How many organizations used the Transportation type of data?
+	var transportaion = 0;
+		for(var i = 0; i < organizations.length; i++){
+    	if(organizations[i]["Type of Data Used"] == "Transportation"){
+				transportaion++;
+			}
+		}
+		document.getElementById("four").innerHTML = transportaion;
+
+	//How many organizations founded in the 2000s that are considered to
+	//be small (1-10 employees) are also for-profit type organizations?
+	var smallForProfit = 0;
+		for(var i = 0; i < organizations.length; i++){
+    	if((organizations[i]["Size"] == "1 to 10") &&
+			(organizations[i]["Founding Year"] >= "2000") &&
+			(organizations[i]["Organization Type"] == "For-profit")){
+				smallForProfit++
+			}
+		}
+		document.getElementById("five").innerHTML = smallForProfit;
 </script>
 
 </body>
